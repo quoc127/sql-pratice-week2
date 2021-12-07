@@ -132,3 +132,58 @@ SELECT COUNT(STATE) AS PEOPLE, STATE FROM customers GROUP BY STATE
 SELECT ITEM, MAX(Price) AS Highest_Price, MIN(Price) AS Lowest_Price
 FROM items_ordered GROUP BY ITEM
 -- select item, max(price), min(price) để truy vấn cột item, số tiền lớn nhất, số tiền nhỏ nhất từ bảng item_ordered, group by để nhóm lại tương đương với 2 cột highest_price và lowest_price
+
+-- Quốc từ câu 11 - 21
+-- câu 11
+select CUSTOMERID, count(CUSTOMERID) as sumORDER from items_ordered /* hiển thị CUSTOMERID, count(CUSTOMERID) từ bảng items_ordered */
+group by CUSTOMERID /* sắp xếp theo CUSTOMERID*/
+
+-- câu 12
+select  STATE, count(CUSTOMERID) as NumberCUSTOMER from customers /* hiển thị STATE, count(CUSTOMERID) từ bảng customers */
+group by STATE /* sắp xếp theo STATE*/
+having count(CUSTOMERID) > 1  /* lấy những giá trị có count(CUSTOMERID) > 1 */
+
+-- câu 13
+select ITEM, max(PRICE) as max, min(PRICE) as min from items_ordered /* hiển thị ITEM, max(PRICE), min(PRICE) từ bảng items_ordered */
+group by ITEM /* sắp xếp theo ITEM */
+having max(PRICE) > 190.00 /* lấy những giá trị có max(PRICE) > 190.00*/
+
+-- câu 14
+select CUSTOMERID, count(CUSTOMERID) as sumORDER from items_ordered /* hiển thị CUSTOMERID, count(CUSTOMERID) từ bảng items_ordered */
+group by CUSTOMERID /* sắp xếp theo CUSTOMERID */
+having count(CUSTOMERID) > 1 /* lấy những giá trị có count(CUSTOMERID) > 1 */
+
+-- câu 15 
+select FIRSTNAME, LASTNAME, CITY from customers /*hiển thị FIRSTNAME, LASTNAME, CITY từ bảng customers */
+order by LASTNAME asc /*sắp xếp theo chiều tăng dần của LASTNAME*/
+
+-- câu 16
+select FIRSTNAME, LASTNAME, CITY from customers /*hiển thị FIRSTNAME, LASTNAME, CITY từ bảng customers */
+order by LASTNAME desc /*sắp xếp theo chiều giảm dần của LASTNAME*/
+
+select CUSTOMERID, ITEM, PRICE from items_ordered /* hiển thị trường CUSTOMERID, ITEM, PRICE từ bảng items_ordered */
+where CUSTOMERID = 10449 order by PRICE asc /* điều kiện CUSTOMERID = 10449 */
+
+
+-- câu 17
+select ITEM, PRICE from items_ordered /*hiển thị ITEM, PRICE từ bảng items_ordered */
+order by PRICE asc /*sắp xếp theo chiều tăng dần của PRICE*/
+
+-- câu 18
+SELECT customers.CUSTOMERID, items_ordered.ORDER_DATE, items_ordered.ITEM FROM customers /*hiển thị CUSTOMERID, ORDER_DATE, ITEM từ bảng customers*/
+FULL OUTER JOIN items_ordered /* kết hợp với bảng items_ordered */
+ON customers.CUSTOMERID = items_ordered.CUSTOMERID /* kiểm tra customers.CUSTOMERID = items_ordered.CUSTOMERID */
+WHERE not items_ordered.ITEM = 'Snow Shose' or not items_ordered.ITEM = 'Ear Muffs'; /* điều kiện items_ordered.ITEM khổng phải là 'Snow Shose' hoặc 'Ear Muffs' */
+
+-- câu 19
+select ITEM, PRICE from items_ordered /* hiển thị ITEM, PRICE từ bảng items_ordered */
+where ITEM like'[SPD]%' /*điều kiện ITEM bắt đầu bằng các chữ cái S, P, D */
+
+-- câu 20
+select ORDER_DATE, ITEM, PRICE from items_ordered /* hiển thị ORDER_DATE, ITEM, PRICE từ bảng items_ordered */
+where PRICE between 10.00 and 80.00 /* điều kiện PRICE nằm giữa 10.00 và 80.00*/
+
+-- câu 21
+select FIRSTNAME, CITY, STATE from customers /* hiển thị FIRSTNAME, CITY, STATE từ bảng customers */
+where STATE = 'Arizona' or STATE = 'Washington' or STATE = 'Oklahoma' or STATE = 'Colorado' or STATE = 'Hawaii'
+/* điều kiện STATE là Arizona hoặc Washington hoặc Oklahoma hoặc Colorado hoặc Hawaii */
