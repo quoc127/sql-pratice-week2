@@ -69,3 +69,33 @@ insert into items_ordered(CUSTOMERID, ORDER_DATE, ITEM, QUANTITY, PRICE) values
 (10298,'2000-5-01','Ear Muffs',1,12.50),
 (10330,'2000-5-19','Shovel',2,88.70);
 
+
+
+--Huy: câu 6 - câu 10
+
+--Câu 6
+SELECT AVG(price) AS AveragePriceOfDecemberPerchases
+--select avg(price) để chọn giá trị trung bình trong cột price
+from items_ordered where ORDER_DATE LIKE '%12%'
+--from chọn từ bảng items-ordered, WHERE để chỉ cột order_date có giá trị trong chuỗi là 12
+
+
+-- Câu 7
+SELECT COUNT(*) FROM items_ordered
+--select count(*) để đếm tất cả có bao nhiêu giá trị trong bảng items_ordered
+
+
+-- Câu 8
+SELECT MIN(Price) FROM items_ordered Where ITEM = 'Tent'
+--select min(price) sẽ chọn giá trị thấp nhất from từ bảng items_ordered có tên ITEM là Tent
+
+
+-- Câu 9
+SELECT COUNT(STATE) AS PEOPLE, STATE FROM customers GROUP BY STATE
+-- select count(state) để liệt kê các giá trị state, chọn cột STATE từ bảng customers, group by state để tổng hợp có bao nhiêu giá trị tương đương với mỗi cột STATE
+
+
+-- Câu 10
+SELECT ITEM, MAX(Price) AS Highest_Price, MIN(Price) AS Lowest_Price
+FROM items_ordered GROUP BY ITEM
+-- select item, max(price), min(price) để truy vấn cột item, số tiền lớn nhất, số tiền nhỏ nhất từ bảng item_ordered, group by để nhóm lại tương đương với 2 cột highest_price và lowest_price
