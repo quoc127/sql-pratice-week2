@@ -69,6 +69,39 @@ insert into items_ordered(CUSTOMERID, ORDER_DATE, ITEM, QUANTITY, PRICE) values
 (10298,'2000-5-01','Ear Muffs',1,12.50),
 (10330,'2000-5-19','Shovel',2,88.70);
 
+-- Quang Thế: câu 1 đến câu 5
+select * from customers -- Hiển thị dữ liệu ở bảng customers
+select * from items_ordered -- hiển thị dữ liệu ở bảng items_ordered
+
+-- câu 1: From the items_ordered table, select a list of all items purchased for customerid 10449. Display the customerid, item, and price for this customer.
+SELECT customerid, item, price FROM items_ordered 
+WHERE customerid = 10449;
+-- lấy 3 trường customerid, item, price từ bằng items_ordered, trường customerid nào có 10449 sẽ hiển thị ra 
+
+
+--câu 2: Select all columns from the items_ordered table for whoever purchased a Tent.
+SELECT * FROM items_ordered
+WHERE item = 'tent';
+-- truy vấn tới bảng items_ordered, ở trường item nếu có tên là 'tent' sẽ được hiển thị ra
+
+
+--câu 3: Select the customerid, order_date, and item values from the items_ordered table for any items in the item column that start with the letter "S".
+SELECT customerid, order_date, item
+FROM items_ordered
+WHERE item LIKE 'S%'
+-- lấy 3 trường customerid, order_date, item từ bảng items_ordered, trường item nếu có tên bắt đầu bằng chữ 'S' đầu tiên sẽ hiển thị ra
+
+
+-- câu 4: Select the distinct items in the items_ordered table. In other words, display a listing of each of the unique items from the items_ordered table.
+SELECT distinct item
+FROM items_ordered;
+-- Hiển thị trường item có các danh mục riêng và không trùng lặp từ bảng items_ordered
+
+
+-- câu 5 : Select the maximum price of any item ordered in the items_ordered table. Hint: Select the maximum price only.
+SELECT MAX(price)
+FROM items_ordered;
+-- hiển thị giá trị cao nhất từ bảng items_ordered
 
 
 --Huy: câu 6 - câu 10
